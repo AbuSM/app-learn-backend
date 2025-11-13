@@ -34,10 +34,12 @@ async function findAvailablePort(
 async function bootstrap() {
 	const app = await NestFactory.create(AppModule);
 
-	// Enable CORS
+	// Enable CORS - Allow all origins
 	app.enableCors({
-		origin: process.env.CORS_ORIGIN || "http://localhost:3001",
+		origin: true, // Allow all origins
 		credentials: true,
+		methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+		allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
 	});
 
 	// Global validation pipe
