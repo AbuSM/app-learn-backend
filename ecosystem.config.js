@@ -3,6 +3,7 @@ module.exports = {
     {
       name: 'app-learn-api',
       script: './dist/main.js',
+      cwd: '/root/app-learn-backend',
       instances: 'max',
       exec_mode: 'cluster',
       env: {
@@ -24,9 +25,6 @@ module.exports = {
       // Development watch mode (disabled in production)
       watch: false,
       ignore_watch: ['node_modules', 'dist/**.map'],
-      // Security
-      uid: 'applearn',
-      gid: 'applearn',
     },
   ],
 
