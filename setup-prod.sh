@@ -88,11 +88,55 @@ main() {
 
     log "Creating deployment directory..."
     mkdir -p /home/applearn/app-learn-backend
-    cd /home/applearn/app-learn-backend
+    chown applearn:applearn /home/applearn/app-learn-backend
     success "Deployment directory created"
 
     log "Configuring systemd service..."
-    cp app-learn-api.service /etc/systemd/system/
+    # Create the systemd service file directly (it will be updated later from repo)
+    cat > /etc/systemd/system/app-learn-api.service << 'SERVICEFILE'
+[Unit]
+Description=App Learn API Service
+After=network.target postgresql.service
+Wants=postgresql.service
+
+[Service]
+Type=simple
+User=applearn
+WorkingDirectory=/home/applearn/app-learn-backend
+EnvironmentFile=/home/applearn/app-learn-backend/.env.production
+
+# Start command using PM2
+ExecStart=/usr/local/bin/pm2 start ecosystem.config.js --no-daemon
+
+# Restart policy
+Restart=on-failure
+RestartSec=10s
+
+# Graceful shutdown
+KillSignal=SIGTERM
+KillMode=process
+TimeoutStopSec=30
+
+# Resource limits
+LimitNOFILE=65536
+LimitNPROC=65536
+
+# Process management
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=app-learn-api
+
+# Security
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/var/log/app-learn /home/applearn/app-learn-backend
+
+[Install]
+WantedBy=multi-user.target
+SERVICEFILE
+
     systemctl daemon-reload
     systemctl enable app-learn-api.service
     success "Systemd service configured"
