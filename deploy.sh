@@ -19,7 +19,7 @@ PROJECT_NAME="app-learn-api"
 PROJECT_PATH="/home/deploy/app-learn-backend"
 LOG_FILE="/var/log/app-learn/deploy.log"
 BACKUP_DIR="/backups/app-learn"
-NODE_VERSION="18.0.0"
+NODE_VERSION="22.0.0"
 
 ################################################################################
 # Utility Functions

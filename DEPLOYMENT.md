@@ -31,8 +31,8 @@ Complete guide for deploying the NestJS backend application to a production serv
 # Update system packages
 sudo apt update && sudo apt upgrade -y
 
-# Install Node.js (v18)
-curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+# Install Node.js (v22)
+curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
 sudo apt install -y nodejs
 
 # Install PM2 globally

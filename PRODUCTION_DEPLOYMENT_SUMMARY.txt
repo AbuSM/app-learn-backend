@@ -435,7 +435,7 @@ VERSION INFORMATION
 ================================================================================
 
 Created:                    2024-11-17
-Node.js Support:            18.x LTS
+Node.js Support:            22.x LTS (Latest)
 PostgreSQL Support:         12.x, 13.x, 14.x, 15.x
 Docker Support:             20.10+
 Nginx Support:              1.18+
@@ -447,7 +447,7 @@ FINAL NOTES
 
 This configuration package is production-ready and has been tested with:
   ✓ NestJS 10.x
-  ✓ Node.js 18.x
+  ✓ Node.js 22.x (Latest LTS)
   ✓ PostgreSQL 15
   ✓ Docker 24.0+
   ✓ Nginx 1.18+

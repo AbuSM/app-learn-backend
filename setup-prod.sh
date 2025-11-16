@@ -34,8 +34,8 @@ main() {
     apt update && apt upgrade -y
     success "System updated"
 
-    log "Installing Node.js 18..."
-    curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
+    log "Installing Node.js 22..."
+    curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
     apt install -y nodejs
     success "Node.js $(node -v) installed"
 
